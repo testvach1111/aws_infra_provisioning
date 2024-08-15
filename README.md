@@ -1,8 +1,9 @@
-#aws_infra_provisioning
-##Overview
+# aws_infra_provisioning
+
+## Overview
 The purpose of this solution is to provision and manage cloud-based infrastructure using AWS services and Terraform
 
-##Prerequisites:
+## Prerequisites:
 Visual Studio Code (Version: 1.92.0) - https://code.visualstudio.com/
 Terraform (Version: v1.9.3) - https://developer.hashicorp.com/terraform/install
 AWS CLI (Version: v2.17.24) - https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
@@ -276,7 +277,7 @@ terraform apply
 
 
 
-##Components
+## Components
 EC2 Instances: Run the web application on these instances.
 Auto Scaling Group (ASG): Automatically manages web server instances based on scaling policies and ALB health checks.
 Application Load Balancer (ALB): Distributes traffic to healthy web servers.
@@ -286,7 +287,7 @@ Subnets: Defines public and private subnets for web servers and the database.
 Security Groups: Restricts inbound and outbound traffic for each resource tier.
 
 
-##File structure:
+## File structure:
 aws_infra_provisioning
 ├── main.tf
 ├── modules
@@ -317,20 +318,20 @@ aws_infra_provisioning
 └── variables.tf
 
 
-##Modules:
+## Modules:
 1. asg - AutoScalingGroup module
 2. db - Database module
 3. load_balancer - Load Balancer module
 4. network - Network module
 
-##Inputs
+## Inputs
 Create file named "testing.auto.tfvar" with 'db_username' and 'db_password' variables with correct DB values
 
-##Outputs
+## Outputs
 "db_endpoint" - DB endpoint
 "load_balancer_dns" - Load Balancer DNS record
 
-##Failover Details:
+## Failover Details:
 RDS Multi-AZ Deployment: The RDS instance is configured with automatic failover across Availability Zones (AZs) within the chosen region. If the primary instance fails, the standby instance automatically takes over with minimal downtime.
 ALB Health Checks: The ALB continuously monitors the health of web servers. If a server becomes unhealthy, the ALB removes it from the traffic distribution until it recovers.
 Auto Scaling Group: The ASG automatically replaces unhealthy instances with new ones, ensuring continuous application availability.
